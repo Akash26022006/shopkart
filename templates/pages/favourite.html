@@ -1,0 +1,84 @@
+{% extends 'layouts/main.html' %}
+
+{% block title %}
+Favourite | ShopKart
+{% endblock title %}
+
+{% block content %}
+
+<div class="container" style="margin-top: 80px;">
+
+
+<div class="row">
+    <div class="col-12">
+        <h4 class="mb-3">My Favourite Products ❤️</h4>
+        <hr style="border-color:#b8bfc2;">
+    </div>
+</div>
+
+<section class="py-4 my-5">
+    <div class="container">
+        <div class="row">
+
+            {% if favourite %}
+
+                {% for item in favourite %}
+
+                <div class="col-md-4 col-lg-3 mb-4">
+                    <div class="card shadow-sm">
+
+                        <img src="{{ item.product.product_image.url }}"
+                             class="card-img-top"
+                             alt="{{ item.product.name }}"
+                             style="height: 220px; object-fit: contain;">
+
+                        <div class="card-body">
+
+                            <h5 class="card-title">
+                                {{ item.product.name }}
+                            </h5>
+
+                            <p class="card-text">
+                                ₹{{ item.product.selling_price }}
+                            </p>
+
+                            <a href="{% url 'product_details' item.product.category.name item.product.name %}"
+                               class="btn btn-primary">
+                                View Product
+                            </a>
+
+                            <a href="{% url 'remove_favourite' item.id %}"
+                               class="btn btn-danger mt-2">
+                                Remove ❤️
+                            </a>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="col-12 text-center">
+                    <h5>No Favourite Products ❤️</h5>
+                    <p>Add products to your favourites to see them here.</p>
+
+                    <a href="{% url 'home' %}" class="btn btn-primary">
+                        Continue Shopping
+                    </a>
+                </div>
+
+            {% endif %}
+
+        </div>
+    </div>
+</section>
+
+
+</div>
+
+{% include 'inc/footer.html' %}
+
+{% endblock content %}

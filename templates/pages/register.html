@@ -1,0 +1,53 @@
+{% extends 'layouts/main.html' %}
+
+{% block title %}
+Registration| ShopKart
+{% endblock title %}
+{% block content %}
+<div class ="container" style="margin-top :80px;">
+<div class = "row">
+    <div class = "col-12">
+        <h4 class="mb-3"> New User Registration</h4>
+        <hr style="border-color:#b8bfc2;">
+        {% include 'inc/message.html' %}
+    </div>
+    </div>
+    <section class="py-4 my-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <form method="POST" action="{% url 'register2' %}">
+                        {% csrf_token %}
+                    <div class="mb-4">
+                        <label form="" class="form-label">User Name</label>
+                       
+                        <input type="text" class = "form-control" placeholder="enter your username" name = "username">
+                    </div>
+                    <div class="mb-4">
+                        <label form="" class="form-label">User Email</label>
+                      
+                        <input type="email" class = "form-control" placeholder="enter your email" name = "email">
+                        
+                   
+                     
+                    </div>
+                    <div class="mb-4">
+                        <label form="" class="form-label">Password</label>
+                       
+                        <input type="password" class = "form-control" placeholder="enter your password" name = "password">
+                    </div>
+                    <div class="mb-4">
+                        <label form="" class="form-label">Conform Password </label>
+                         <input type="password" class = "form-control" placeholder="enter your confirm password" name = "password2">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                    </form><br>
+                    
+                </div>
+              
+            </div>
+        </div>
+    </section>
+</div>
+{% include 'inc/footer.html' %}
+{% endblock content %}
